@@ -3,7 +3,7 @@ package andersonarmani.aaafoursquare.di;
 import javax.inject.Singleton;
 
 import andersonarmani.aaafoursquare.di.module.NetModule;
-import andersonarmani.aaafoursquare.ui.activity.MainActivity;
+import andersonarmani.aaafoursquare.repository.FoursquareRepositoryImpl;
 import dagger.Component;
 
 /**
@@ -12,5 +12,5 @@ import dagger.Component;
 @Singleton
 @Component(modules = NetModule.class)
 public interface AppComponent {
-    void inject(MainActivity mainActivity);
+    void inject(FoursquareRepositoryImpl foursquareRepository);
 }
