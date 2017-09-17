@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bottom_sheet_elevation">3dp</dimen>
+    <dimen name="bottom_sheet_max_size">300dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+</resources>
