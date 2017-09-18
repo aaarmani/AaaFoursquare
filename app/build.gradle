@@ -46,4 +46,8 @@ dependencies {
     //Dagger2
     compile 'com.google.dagger:dagger:2.11'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+
+    //GoogleMaps
+    compile 'com.google.android.gms:play-services-maps:11.0.4'
+    compile 'com.google.maps.android:android-maps-utils:0.5'
 }

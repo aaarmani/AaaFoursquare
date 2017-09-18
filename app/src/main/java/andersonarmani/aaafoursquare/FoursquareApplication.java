@@ -5,6 +5,7 @@ import android.app.Application;
 import andersonarmani.aaafoursquare.di.AppComponent;
 import andersonarmani.aaafoursquare.di.DaggerAppComponent;
 import andersonarmani.aaafoursquare.di.module.NetModule;
+import andersonarmani.aaafoursquare.di.module.RepositoryModule;
 
 /**
  * Created by Armani andersonaramni@gmail.com on 17/09/2017.
@@ -20,6 +21,7 @@ public class FoursquareApplication extends Application {
 
         sAppComponent = DaggerAppComponent.builder()
                 .netModule(new NetModule(BASE_URL))
+                .repositoryModule(new RepositoryModule())
                 .build();
     }
 
