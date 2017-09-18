@@ -1,9 +1,9 @@
 package andersonarmani.aaafoursquare.ui.fragment.pois;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,10 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import andersonarmani.aaafoursquare.R;
 import andersonarmani.aaafoursquare.api.model.Item;
 import andersonarmani.aaafoursquare.ui.activity.ListPoiPresenter;
+import andersonarmani.aaafoursquare.ui.activity.itemDetail.ItemDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +24,12 @@ import java.util.List;
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link OnListPoisClickItem}
  * interface.
  */
-public class PoisFragment extends Fragment implements PoisView, SeekBar.OnSeekBarChangeListener {
+public class PoisFragment extends Fragment implements PoisView, SeekBar.OnSeekBarChangeListener, OnListPoisClickItem {
     private static final String TAG = PoisFragment.class.getSimpleName();
     private static final int DEFAULT_RADIUS = 200;
-    private OnListFragmentInteractionListener mListener;
     private List<Item> mItemList;
     private RecyclerView mRecyclerView;
     private SeekBar mSeekBar;
@@ -40,14 +41,6 @@ public class PoisFragment extends Fragment implements PoisView, SeekBar.OnSeekBa
      */
     public PoisFragment() {
     }
-
-    /*public static PoisFragment newInstance(int columnCount) {
-        PoisFragment fragment = new PoisFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
-    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,28 +63,14 @@ public class PoisFragment extends Fragment implements PoisView, SeekBar.OnSeekBa
             Context context = view.getContext();
 
             mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-            mRecyclerView.setAdapter(new MyPoisRecyclerViewAdapter(mItemList, mListener));
+            mRecyclerView.setAdapter(new MyPoisRecyclerViewAdapter(mItemList, this));
         }
         return view;
-    }
-
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
-        } else {
-            /*throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");*/
-            //TODO: change it, removing this comments
-        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
     @Override
@@ -135,18 +114,14 @@ public class PoisFragment extends Fragment implements PoisView, SeekBar.OnSeekBa
         }
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onListFragmentInteraction(Item item);
+    //On ItemList clicked
+    @Override
+    public void onClick(Item item) {
+        Log.d(TAG, "OnItemClicked");
+
+        Intent intent = new Intent(getActivity(), ItemDetailActivity.class);
+        intent.putExtra(ItemDetailActivity.ITEM_ID, item.getVenue().getId());
+        startActivity(intent);
+        //Toast.makeText(getContext(), "Item Detail not implemented", Toast.LENGTH_SHORT).show();
     }
 }

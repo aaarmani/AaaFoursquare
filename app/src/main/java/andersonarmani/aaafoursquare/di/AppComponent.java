@@ -6,6 +6,7 @@ import andersonarmani.aaafoursquare.di.module.NetModule;
 import andersonarmani.aaafoursquare.di.module.RepositoryModule;
 import andersonarmani.aaafoursquare.repository.FoursquareRepositoryImpl;
 import andersonarmani.aaafoursquare.ui.activity.MapPresenterImpl;
+import andersonarmani.aaafoursquare.ui.activity.itemDetail.ItemDetailActivity;
 import dagger.Component;
 
 /**
@@ -16,4 +17,5 @@ import dagger.Component;
 public interface AppComponent {
     void inject(FoursquareRepositoryImpl foursquareRepository);
     void inject(MapPresenterImpl mapPresenter);
+    void inject(ItemDetailActivity itemDetailActivity);
 }

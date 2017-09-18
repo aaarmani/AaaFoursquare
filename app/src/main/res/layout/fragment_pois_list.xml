@@ -3,11 +3,12 @@
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-android:background="@color/colorPrimaryDark">
+android:background="@color/colorBottomSheet">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:text="@string/fq_radius"/>
     <SeekBar
         android:id="@+id/seekBar"
@@ -31,5 +32,5 @@ android:background="@color/colorPrimaryDark">
         app:layoutManager="LinearLayoutManager"
         tools:context="andersonarmani.mapcoordinator.PoisFragment"
         tools:listitem="@layout/item_poi"
-        android:background="@color/colorAccent"/>
+        android:background="@color/bottomSheetBackground_list"/>
 </LinearLayout>

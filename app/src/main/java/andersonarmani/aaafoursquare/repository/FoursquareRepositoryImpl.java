@@ -10,6 +10,7 @@ import andersonarmani.aaafoursquare.FoursquareApplication;
 import andersonarmani.aaafoursquare.api.FoursquareService;
 import andersonarmani.aaafoursquare.api.model.Explore;
 import andersonarmani.aaafoursquare.api.model.Item;
+import andersonarmani.aaafoursquare.api.model.VenueRequest;
 import io.reactivex.Single;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
@@ -40,5 +41,10 @@ public class FoursquareRepositoryImpl implements FoursquareRepository {
                         return explore.getResponse().getGroups().get(0).getItems();
                     }
                 });
+    }
+
+    @Override
+    public Single<VenueRequest> getVenueRequest(String venueId) {
+        return foursquareService.getVenuesRequest(venueId, CLIENT_ID, CLIENT_SECRET, API_DATE);
     }
 }

@@ -5,6 +5,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.List;
 
 import andersonarmani.aaafoursquare.api.model.Item;
+import andersonarmani.aaafoursquare.api.model.VenueRequest;
 import io.reactivex.Single;
 
 /**
@@ -13,4 +14,6 @@ import io.reactivex.Single;
 
 public interface FoursquareRepository {
     Single<List<Item>> getVenuesExplore(LatLng latLng, int radius);
+
+    Single<VenueRequest> getVenueRequest(String venueId);
 }

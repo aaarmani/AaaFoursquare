@@ -8,21 +8,20 @@ import android.widget.TextView;
 
 import andersonarmani.aaafoursquare.R;
 import andersonarmani.aaafoursquare.api.model.Item;
-import andersonarmani.aaafoursquare.ui.fragment.pois.PoisFragment.OnListFragmentInteractionListener;
 
 import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a List of Foursquare items
- * specified {@link OnListFragmentInteractionListener}.
+ * specified {@link OnListPoisClickItem}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyPoisRecyclerViewAdapter extends RecyclerView.Adapter<MyPoisRecyclerViewAdapter.ViewHolder> {
 
     private final List<Item> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final OnListPoisClickItem mListener;
 
-    public MyPoisRecyclerViewAdapter(List<Item> items, OnListFragmentInteractionListener listener) {
+    public MyPoisRecyclerViewAdapter(List<Item> items, OnListPoisClickItem listener) {
         mValues = items;
         mListener = listener;
     }
@@ -36,8 +35,17 @@ public class MyPoisRecyclerViewAdapter extends RecyclerView.Adapter<MyPoisRecycl
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        String strRating;
+        Double rating = mValues.get(position).getVenue().getRating();
+        if(rating != null) {
+            strRating = String.valueOf(rating);
+        }
+        else {
+            strRating = "-";
+        }
+
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).getVenue().getId());
+        holder.mIdView.setText(strRating);
         holder.mContentView.setText(mValues.get(position).getVenue().getName());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +54,7 @@ public class MyPoisRecyclerViewAdapter extends RecyclerView.Adapter<MyPoisRecycl
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onClick(holder.mItem);
                 }
             }
         });

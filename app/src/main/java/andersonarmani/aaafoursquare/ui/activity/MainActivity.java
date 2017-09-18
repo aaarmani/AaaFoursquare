@@ -60,11 +60,9 @@ public class MainActivity extends FragmentActivity
         mMapPresenter.mapReady();
 
         //Set settings
-        googleMap.setMinZoomPreference(10);
+        googleMap.setMinZoomPreference(7);
         googleMap.setIndoorEnabled(false);
         googleMap.getUiSettings().setMapToolbarEnabled(false);
-        //Update camera position
-        //googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(45.192145, 5.725155)));
         googleMap.moveCamera(CameraUpdateFactory.zoomTo(16F));
 
         //Location
@@ -128,7 +126,6 @@ public class MainActivity extends FragmentActivity
     public void addMapItems(List<Item> itemList) {
         if(mMap == null) {
             Log.d(TAG, "addMarkers mGoogleMap == null");
-            //mPlacemarkList = markerList;
             return;
         }
 
